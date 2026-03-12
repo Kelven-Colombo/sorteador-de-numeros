@@ -1,8 +1,15 @@
-function sortear(){
+    let botaoSortear = document.querySelector('#btn-sortear');
+    let botaoReiniciar = document.querySelector('#btn-reiniciar');
+    
+    botaoSortear.addEventListener('click', sortear);
+    botaoReiniciar.addEventListener('click', reiniciar);
+  
+    
+    function sortear(){
     // usando o '.value' para receber o valor de um elemento da página HTML via ID:
-    let quantidade = parseInt(document.getElementById('quantidade').value);
-    let min = parseInt(document.getElementById('min').value); 
-    let max = parseInt(document.getElementById('max').value);
+    let quantidade = parseInt(document.querySelector('#quantidade').value);
+    let min = parseInt(document.querySelector('#min').value); 
+    let max = parseInt(document.querySelector('#max').value);
     let intervalo = (max - min) + 1;
 
     console.log(`qtd: ${quantidade} min: ${min} max: ${max}  intervalo: ${intervalo}`)
@@ -19,7 +26,8 @@ function sortear(){
     // preenchendo a lista de Números Sorteados:
     for (let i = 0; i < quantidade; i++) {
         numero = gerarNumeroAleatorio(min, max);
-
+        
+        // verificando se o número gerado já foi sorteado, caso sim, gera outro número até encontrar um que não tenha sido sorteado:
         while (sorteados.includes(numero)) {
             numero = gerarNumeroAleatorio(min, max);
         }
@@ -30,38 +38,46 @@ function sortear(){
     console.log(`Números Sorteados: ${sorteados}`);
 
 
-    // usando o 'innerHTML = ' para enviar um valor para a página HTML ou manipular uma tag pelo JS:
-    let resultado = document.getElementById('resultado');
-    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: (${sorteados})</label>`
+    // usando o 'innerHTML = ' para mostrar um valor na página HTML ou manipular uma tag pelo JS:
+    let resultado = document.querySelector('#resultado');
+    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados.join(', ')}</label>`
 
     //habilitando o botão Reiniciar
-    alterarStatusBotao();
+    alterarStatusBotao(botaoReiniciar, botaoSortear);
 }
 
 
 function gerarNumeroAleatorio(min, max){
-    return Math.floor(Math.random() * (max - min +1 ) + min) ;
+    return Math.floor(Math.random() * (max - min +1 ) + min);
 }
 
 
-function alterarStatusBotao(){
-    let botaoReiniciar = document.getElementById('btn-reiniciar');
-    let botaoSortear = document.getElementById('btn-sortear');
+function alterarStatusBotao(botaoReiniciar, botaoSortear){
+    
+    //inicio do sorteio: botão reiniciar desabilitado e botão sortear habilitado
+    if (botaoReiniciar.classList.contains('container__botao-desabilitado')) {
+        
+        botaoReiniciar.classList.replace('container__botao-desabilitado', 'container__botao');
+        botaoReiniciar.disabled = false;
 
-    botaoReiniciar.classList.toggle('container__botao-desabilitado');
-    botaoReiniciar.classList.toggle('container__botao');
+        botaoSortear.classList.replace('container__botao', 'container__botao-desabilitado');
+        botaoSortear.disabled = true;
 
-    botaoSortear.classList.toggle('container__botao-desabilitado');
-    botaoSortear.classList.toggle('container__botao');
+    } else { //caso sorteio já tenha ocorrido: botão reiniciar habilitado e botão sortear desabilitado
+        
+        botaoReiniciar.classList.replace('container__botao', 'container__botao-desabilitado');
+        botaoReiniciar.disabled = true;
+        botaoSortear.classList.replace('container__botao-desabilitado', 'container__botao');
+        botaoSortear.disabled = false;
+    }
 }
 
 
 function reiniciar(){
-    document.getElementById('quantidade').value = '';
-    document.getElementById('min').value = '';
-    document.getElementById('max').value = '';
-    document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>';
+    let listaInputs = document.querySelectorAll('input');
+    listaInputs.forEach(input => {input.value = ''});
+    document.querySelector('#resultado').innerHTML = '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>';
 
     //desabilitando o botão Sortear
-    alterarStatusBotao();
+    alterarStatusBotao(botaoReiniciar, botaoSortear);
 }
