@@ -1,6 +1,6 @@
 # 🔢 Sorteador de Números
 
-> **Status:** Projeto refatorado para aplicação de boas práticas em JavaScript moderno (ES6+). 🚀
+> **Status:** Projeto refatorado para aplicação de boas práticas em JavaScript.
 
 ## ℹ️ Sobre
 Originalmente desenvolvido como parte dos cursos de lógica de programação da **Alura**, este projeto foi revisado e totalmente refatorado por mim para implementar conceitos mais robustos de manipulação do DOM e organização de código.
@@ -10,7 +10,7 @@ Sortear uma lista de números únicos dentro de um intervalo definido pelo usuá
 
 ---
 
-## Upgrades e Refatoração (O que mudou?)
+## Upgrades e Refatoração:
 
 Nesta revisão, decidi aplicar alguns conceitos de **Análise e Desenvolvimento de Sistemas** para tornar o código mais profissional:
 
