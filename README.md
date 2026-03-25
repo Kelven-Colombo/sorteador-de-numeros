@@ -2,6 +2,8 @@
 
 > **Status:** Projeto refatorado para aplicação de boas práticas em JavaScript.
 
+> 🔗 **[Acessar a demo do projeto ▶️](https://kelven-colombo.github.io/sorteador-de-numeros/)**
+
 ## ℹ️ Sobre
 Originalmente desenvolvido como parte dos cursos de lógica de programação da **Alura**, este projeto foi revisado e totalmente refatorado por mim para implementar conceitos mais robustos de manipulação do DOM e organização de código.
 
@@ -18,7 +20,7 @@ Nesta revisão, decidi aplicar alguns conceitos de **Análise e Desenvolvimento 
 
 * **Adição de Event Listeners:** Removi os atributos `onclick` diretamente do HTML. Agora, o comportamento é gerenciado inteiramente no JavaScript via `addEventListener`, garantindo a separação de responsabilidades.
 
-* **Estado dos Botões:** Em vez de usar `toggle` (que pode causar bugs visuais), implementei uma lógica baseada em `classList.replace` e na propriedade booleana `.disabled`, garantindo que a interface mostre o estado real da aplicação.
+* **Estado dos Botões:** Em vez de usar `toggle` (que pode causar bugs visuais), implementei uma lógica baseada em `classList.replace` na propriedade booleana `.disabled`, garantindo que a interface mostre o estado real da aplicação.
 
 * **Escalabilidade e DRY (Don't Repeat Yourself):** No processo de reiniciar o sorteio, utilizei o método `querySelectorAll` junto com o `forEach` e *Arrow Functions* para limpar todos os inputs de forma automática e escalável.
 
